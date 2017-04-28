@@ -1,3 +1,4 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
@@ -17,6 +18,9 @@ public class MainTest {
         SearchTest checkSearchFunctionality = new SearchTest(startBrowser)
                 .openMainPage("http://indeed.co.uk")
                 .addSearchData("Selenium", "London");
+
+        checkSearchFunctionality.ExpWaitExpectedCondition(startBrowser, By.id("prime-popover-close-button"));
+        checkSearchFunctionality.closePopup();
 
         assertEquals(checkSearchFunctionality.getCheckSearchCount(), "Jobs 1 to 10 of 800");
         assertEquals(checkSearchFunctionality.getCheckSearchTitle(), "Selenium Jobs, vacancies in London | Indeed.co.uk");

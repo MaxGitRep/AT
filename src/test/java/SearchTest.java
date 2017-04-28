@@ -1,7 +1,11 @@
+import cucumber.api.java.eo.Se;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +21,7 @@ public class SearchTest {
         this.driver = driver;
     }
 
-    @FindBy(id = "what")
+    @FindBy (id = "what")
     public WebElement searchField;
 
     @FindBy (id = "where")
@@ -40,8 +44,21 @@ public class SearchTest {
         searchField.sendKeys(what);
         searchLocation.sendKeys(where);
         buttonFindJob.click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        //popupPrime.click();
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        return this;
+    }
+
+    public static void ExpWaitExpectedCondition(WebDriver driver, Object xpathElement){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable((By) xpathElement));
+    }
+
+    public static void ImpWaitExpectedCondition(WebDriver driver){
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    public SearchTest closePopup(){
+        popupPrime.click();
         return this;
     }
 
