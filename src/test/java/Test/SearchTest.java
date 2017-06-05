@@ -1,9 +1,9 @@
-import cucumber.api.java.eo.Se;
+package Test;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -11,9 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.support.PageFactory.initElements;
 
-/**
- * Created by mpa on 4/20/2017.
- */
 public class SearchTest {
     private final WebDriver driver;
 
@@ -48,9 +45,9 @@ public class SearchTest {
         return this;
     }
 
-    public static void ExpWaitExpectedCondition(WebDriver driver, Object xpathElement){
+    public static void ExpWaitExpectedCondition(WebDriver driver, By xpathElement){
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable((By) xpathElement));
+        wait.until(ExpectedConditions.elementToBeClickable(xpathElement));
     }
 
     public static void ImpWaitExpectedCondition(WebDriver driver){
@@ -67,6 +64,11 @@ public class SearchTest {
     }
 
     public String getCheckSearchCount() {
+        driver.findElement(By.className(""));
+        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+
         return driver.findElement(By.id("searchCount")).getText();
+
     }
 }

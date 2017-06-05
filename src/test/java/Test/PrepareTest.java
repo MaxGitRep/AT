@@ -1,13 +1,14 @@
+package Test;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.Parameters;
 
-/**
- * Created by mpa on 4/20/2017.
- */
+
 public class PrepareTest {
 
     static WebDriver driver;
@@ -35,7 +36,8 @@ public class PrepareTest {
             driver = new EdgeDriver();
 
         } else {
-            System.out.println("NO Such Browser");
+            System.setProperty("webdriver.gecko.driver", "C:/UnitTest/geckodriver-v0.14.0-win64/geckodriver.exe");
+            driver = new FirefoxDriver();
         }
 
         driver.manage().window().maximize();
